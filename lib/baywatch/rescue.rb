@@ -1,14 +1,16 @@
 module Baywatch
 
   module Rescue
-    
+    DEFAULT_EXCEPTIONS = [Errno::ECONNREFUSED, Errno::ECONNRESET]
+
     def self.included(base)
       base.instance_eval do 
 
         def service_down(*exceptions, &block)
           on = Baywatch::Config.new
           block.call(on)
-          define_rescues(exceptions, on)
+          exceptions_appended = exceptions.unshift(*DEFAULT_EXCEPTIONS)
+          define_rescues(exceptions_appended, on)
         end
 
         def define_rescues(exceptions, configuration)

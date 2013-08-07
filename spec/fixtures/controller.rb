@@ -8,7 +8,7 @@ class BaywatchController < ApplicationController
 
   class TimeoutException < StandardError; end
 
-  service_down(Errno::ECONNREFUSED, Errno::ECONNRESET, BaywatchController::TimeoutException ) do |on|
+  service_down(BaywatchController::TimeoutException) do |on|
     
     on.index do |e|
       redirect_to "/baywatch_service_down_rescued"
@@ -27,4 +27,5 @@ class BaywatchController < ApplicationController
   def timeout
     raise TimeoutException.new
   end
+
 end
