@@ -6,7 +6,7 @@ TODO: Write a gem description
 
 Add this line to your application's Gemfile:
 
-    gem 'baywatch', :git => 
+    gem 'baywatch', :git => https://github.com/croudcare/baywatch.git
 
 And then execute:
 
