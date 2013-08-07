@@ -17,7 +17,7 @@ module Baywatch
           self.class_eval do
             define_method :baywatch do |exception|
               block =  configuration[request.filtered_parameters["action"]]
-              self.instance_eval &block
+              self.instance_eval &block unless block.nil?
             end
           end
       
