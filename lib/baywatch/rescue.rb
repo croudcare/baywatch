@@ -1,7 +1,6 @@
 module Baywatch
-
   module Rescue
-    DEFAULT_EXCEPTIONS = [Errno::ECONNREFUSED, Errno::ECONNRESET]
+    DEFAULT_EXCEPTIONS = [ Errno::ECONNREFUSED, Errno::ECONNRESET ]
 
     def self.included(base)
       base.instance_eval do 
@@ -12,8 +11,10 @@ module Baywatch
           exceptions_appended = exceptions.unshift(*DEFAULT_EXCEPTIONS)
           define_rescues(exceptions_appended, on)
         end
-
+        
+        private
         def define_rescues(exceptions, configuration)
+          
           self.class_eval do
             define_method :baywatch do |exception|
               block =  configuration[request.filtered_parameters["action"]]
@@ -25,6 +26,5 @@ module Baywatch
         end
       end
     end
-
   end
 end
