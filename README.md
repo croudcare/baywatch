@@ -1,6 +1,6 @@
 # Baywatch
 
-TODO: Write a gem description
+[![Code Climate](https://codeclimate.com/repos/520379417e00a429dc02c367/badges/6a679ba794edb297e6e0/gpa.png)](https://codeclimate.com/repos/520379417e00a429dc02c367/feed)
 
 ## Installation
 
