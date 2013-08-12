@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'pry'
+
 describe Baywatch do 
 
   context "Service Down Interface" do 
