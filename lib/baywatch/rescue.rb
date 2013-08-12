@@ -1,5 +1,7 @@
+require 'pry'
 module Baywatch
   module Rescue
+    
     DEFAULT_EXCEPTIONS = [ Errno::ECONNREFUSED, Errno::ECONNRESET ]
 
     def self.included(base)
@@ -12,13 +14,18 @@ module Baywatch
           define_rescues(exceptions_appended, on)
         end
         
-        private
+
         def define_rescues(exceptions, configuration)
-          
           self.class_eval do
+            
+            def baywatch_requested_action
+              request.filtered_parameters["action"]
+            end
+
             define_method :baywatch do |exception|
-              block =  configuration[request.filtered_parameters["action"]]
-              self.instance_eval &block unless block.nil?
+              raise exception unless configuration.include? baywatch_requested_action
+              block =  configuration[baywatch_requested_action]
+              self.instance_eval &block
             end
           end
       

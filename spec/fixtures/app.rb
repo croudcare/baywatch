@@ -12,15 +12,22 @@ module Rails
       return @routes if defined?(@routes)
       @routes = ActionDispatch::Routing::RouteSet.new
       @routes.draw do
+        
         get "/baywatch" => "baywatch#index"
         get "/timeout" => "baywatch#timeout"
+        get "/edit" => "baywatch#edit"
+
+        get "/long_beach" => "beaches#long_beach"
+        get "/venice" => "beaches#venice"
+        get "/sunset" => "beaches#sunset"
       end
+   
       @routes
     end
-
   end
 
   def self.application
     @app ||= App.new
   end
+  
 end

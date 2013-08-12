@@ -47,6 +47,37 @@ Declarative way to error handling inside controller
   
 ````
 
+Using #only to use the same behavior to many actions.
+
+
+````
+
+  class UserController < ApplicationController
+    include Baywatch::Rescue
+
+    service_down do |on|      
+      on.only :index, :create do
+        flash[:error] = "Sorry, the service is not working properly"
+        redirect_to root_url
+      end
+    end
+    
+    def index
+      @users = Users.all
+    end
+    
+    def create
+      @user = User.create(params[:user])
+      @user.save
+    end
+    
+  end
+  
+````
+
+
+
+
 ### TODO
 ##### Handle Contextual Exception
  
