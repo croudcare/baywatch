@@ -37,6 +37,14 @@ describe BaywatchController, type: :controller do
       response.should redirect_to("/baywatch_service_down_rescued")
     end
 
+		it "captures Errno::ETIMEDOUT" do
+			controller.stub(:index) do
+				raise Errno::ETIMEDOUT.new
+			end
+			get :index
+			response.should redirect_to("/baywatch_service_down_rescued")
+		end
+
     it "doesn't capture unregistered exception" do 
       controller.stub(:index) do
         raise "WHATEVER EXCEPTION"
