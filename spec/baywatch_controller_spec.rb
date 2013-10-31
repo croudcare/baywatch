@@ -20,23 +20,6 @@ describe BaywatchController, type: :controller do
 
   context "Service Unavailable Exceptions" do 
 
-    it "captures Errno::ECONNRESET " do
-      controller.stub(:index) do
-        raise Errno::ECONNRESET.new
-      end
-
-      get :index
-      response.should redirect_to("/baywatch_service_down_rescued")
-    end
-
-    it "captures Errno::ECONNREFUSED " do
-      controller.stub(:index) do
-        raise Errno::ECONNREFUSED.new
-      end
-      get :index
-      response.should redirect_to("/baywatch_service_down_rescued")
-    end
-
     it "doesn't capture unregistered exception" do 
       controller.stub(:index) do
         raise "WHATEVER EXCEPTION"

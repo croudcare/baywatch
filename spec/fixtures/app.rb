@@ -20,7 +20,8 @@ module Rails
         get "/long_beach" => "beaches#long_beach"
         get "/venice" => "beaches#venice"
         get "/sunset" => "beaches#sunset"
-      end
+    		get "/costa_da_caparica" => "beaches#costa_da_caparica" 
+		 end
    
       @routes
     end

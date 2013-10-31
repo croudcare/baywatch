@@ -20,7 +20,16 @@ describe BeachesController, type: :controller do
       response.should redirect_to("/baywatch_service_down_rescued")
   end
 
-  it "captures Errno::ECONNRESET " do
+	it "captures Errno::ETIMEDOUT" do
+		controller.stub(:costa_da_caparica) do
+			raise Errno::ETIMEDOUT.new
+		end
+
+		get :costa_da_caparica
+		response.should redirect_to("/baywatch_service_down_rescued")
+	end
+
+  it "captures Errno::ECONNRESET" do
     exception = Errno::ECONNRESET.new
     controller.stub(:sunset) do
       raise exception

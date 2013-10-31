@@ -1,7 +1,7 @@
 module Baywatch
   module Rescue
     
-    DEFAULT_EXCEPTIONS = [ Errno::ECONNREFUSED, Errno::ECONNRESET ]
+    DEFAULT_EXCEPTIONS = [ Errno::ETIMEDOUT, Errno::ECONNREFUSED, Errno::ECONNRESET ]
 
     def self.included(base)
       base.extend(ClassMethods)
