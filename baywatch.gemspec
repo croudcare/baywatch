@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Baywatch::VERSION
   gem.authors       = ["Thiago Dantas"]
   gem.email         = ["thiago.teixeira.dantas@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{baywatch}
+  gem.summary       = %q{baywatch}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
